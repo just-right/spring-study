@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @EnableJdbc
-@PropertySource("enablejdbc/jdbc.properties")
+@PropertySource("enableJdbc/jdbc.properties")
 public class EnableJdbcApplication {
 
     public static void main(String[] args) throws Exception {
