@@ -68,5 +68,9 @@ AbstractApplicationContext-refresh
 - bean 的销毁
 
 
+&emsp;&emsp;BeanDefinition阶段:
 
+> ClassPathXmlApplicationContext 在 refresh 之前，会指定传入的 xml 配置文件的路径，执行 refresh 方法时，会初始化 BeanFactory ，触发 xml 配置文件的读取、加载和解析。其中 xml 的读取需要借助 XmlBeanDefinitionReader ，解析 xml 配置文件则使用 DefaultBeanDefinitionDocumentReader ，最终解析 xml 中的元素，封装出 BeanDefinition ，最后注册到 BeanDefinitionRegistry 。
+
+> 注解配置类的解析发生在 BeanDefinitionRegistryPostProcessor 的执行阶段，它对应的核心后置处理器是 ConfigurationClassPostProcessor ，它主要负责两个步骤三件事情：解析配置类、注册 BeanDefinition 。三件事情包括：1) 解析 @ComponentScan 并进行包扫描，实际进行包扫描的组件是 ClassPathBeanDefinitionScanner ；2) 解析配置类中的注解（如 @Import 、@ImportResource 、@PropertySource 等）并处理，工作的核心组件是 ConfigurationClassParser ；3) 解析配置类中的 @Bean 并封装 BeanDefinition ，实际解析的组件是 ConfigurationClassBeanDefinitionReader 。
 
